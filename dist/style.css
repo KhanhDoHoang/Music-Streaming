@@ -24,10 +24,10 @@ img {
   box-shadow: none;
   transform: scale(0.98) translateY(5px);
 }
-h3 {
+h2 {
   color: #dadada;
-  font-weight: 800px;
-  font-size: 34px;
+  font-weight: 200px;
+  font-size: 30px;
   margin-bottom: 34px;
   border-bottom: 4px solid #e6e6e6;
   padding-bottom: 15px;
@@ -121,7 +121,7 @@ section {
 }
 section h2 {
   color: #ffffff;
-  font-size: 10em;
+  font-size: 50px;
   z-index: 1;
   mix-blend-mode: overlay;
 }
