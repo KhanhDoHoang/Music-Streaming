@@ -1,7 +1,9 @@
 // NOW I CLICK album-poster TO GET CURRENT SONG ID
 var currentDataSwitch = -1;
-const play = document.querySelector(".play");
-const pause = document.querySelector(".pause");
+// var play1 = document.querySelector(".play");
+var play = $('div.play').hasClass("active");
+// var pause1 = document.querySelector(".pause");
+var pause = $('div.pause').hasClass("active");
 
 $(".album-poster").on("click", function (e) {
   var dataSwitchId = $(this).attr("data-switch");
@@ -14,50 +16,41 @@ $(".album-poster").on("click", function (e) {
     $(document).ready(function () {
       $(".pause").remove();
       $(".play").remove();
-    });
-
-    $(document).ready(function () {
-      $(".app" + dataSwitchId).append(' <div class="pause "></div> <div class="play active"></div>');
-    });
-
-    //this is static id but i use dynamic
-
-    //create pause
-
-    ap.list.switch(dataSwitchId);
-    $(document).ready(function () {
+      $(".app" + dataSwitchId).append(' <div class="pause"></div> <div class="play active"></div>');
       $(".pause").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div>");
       $(".play").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div> <div class=\"line line_3\"></div>");
     });
-
-    // pause.classList.remove("active");
-    // play.classList.add("active");
-    // ap.play();
-
+    //this is static id but i use dynamic
+    //create pause
+    ap.list.switch(dataSwitchId);
+    ap.play();
   } else {
     //change play
-    if (play.classList.contains('active')) {
-      play.classList.remove('active');
-      pause.classList.add('active');
+    //if play has active
+    if ($('div.pause').hasClass("active")) {
+      //$(".play").attr('play active', 'play');
+
+      $('.pause').removeClass("active");
+
+
+      //play.classList.add('active');
+      $('.play').addClass("active");
+
+      ap.play();
+    } else if ($('div.play').hasClass("active")) {
+      //pause.classList.remove('active');
+      $('.play').removeClass('active');
+
+      //play.classList.remove('active');
+      //pause.classList.add('active');
+      $('.pause').addClass('active');
+
       //add active for pause
       ap.pause();
-    } else {
-      pause.classList.remove('active');
-      play.classList.add('active');
-      ap.play();
     }
+    //if pause is active
+
   }
-  //remove play line
-
-  //add pause line
-
-  // aplayer play function
-  // when i click any song to play
-
-  //should have condition for turn on play and pause
-
-  // click to slideUp player see
-  ap.play();
   $("#aplayer").addClass("showPlayer");
 });
 
@@ -118,30 +111,30 @@ const ap = new APlayer({
   ],
 });
 
-var dataSwitchId = $(this).attr("data-switch");
-if (currentDataSwitch != dataSwitchId) {
-  autoSwitchPlay();
-}
+// var dataSwitchId = $(this).attr("data-switch");
+// if (currentDataSwitch != dataSwitchId) {
+//   autoSwitchPlay();
+// }
 
-function autoSwitchPlay() {
-  currentDataSwitch = dataSwitchId;
-  $(document).ready(function () {
-    $(".pause").remove();
-    $(".play").remove();
-  });
+// function autoSwitchPlay() {
+//   currentDataSwitch = dataSwitchId;
+//   $(document).ready(function () {
+//     $(".pause").remove();
+//     $(".play").remove();
+//   });
 
-  $(document).ready(function () {
-    $(".app" + dataSwitchId).append(' <div class="pause "></div> <div class="play active"></div>');
-  });
+//   $(document).ready(function () {
+//     $(".app" + dataSwitchId).append(' <div class="pause "></div> <div class="play active"></div>');
+//   });
 
-  //this is static id but i use dynamic
+//   //this is static id but i use dynamic
 
-  //create pause
+//   //create pause
 
-  ap.list.switch(dataSwitchId);
-  $(document).ready(function () {
-    $(".pause").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div>");
-    $(".play").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div> <div class=\"line line_3\"></div>");
-  });
+//   ap.list.switch(dataSwitchId);
+//   $(document).ready(function () {
+//     $(".pause").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div>");
+//     $(".play").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div> <div class=\"line line_3\"></div>");
+//   });
 
-}
+// }
