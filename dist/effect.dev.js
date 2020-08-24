@@ -1,9 +1,11 @@
 "use strict";
 
 // NOW I CLICK album-poster TO GET CURRENT SONG ID
-var currentDataSwitch = -1;
-var play = document.querySelector(".play");
-var pause = document.querySelector(".pause");
+var currentDataSwitch = -1; // var play1 = document.querySelector(".play");
+
+var play = $('div.play').hasClass("active"); // var pause1 = document.querySelector(".pause");
+
+var pause = $('div.pause').hasClass("active");
 $(".album-poster").on("click", function (e) {
   var dataSwitchId = $(this).attr("data-switch"); //console.log(dataSwitchId);
   // and now i use aplayer switch function see
@@ -14,40 +16,35 @@ $(".album-poster").on("click", function (e) {
     $(document).ready(function () {
       $(".pause").remove();
       $(".play").remove();
-    });
-    $(document).ready(function () {
-      $(".app" + dataSwitchId).append(' <div class="pause "></div> <div class="play active"></div>');
+      $(".app" + dataSwitchId).append(' <div class="pause"></div> <div class="play active"></div>');
+      $(".pause").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div>");
+      $(".play").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div> <div class=\"line line_3\"></div>");
     }); //this is static id but i use dynamic
     //create pause
 
     ap.list["switch"](dataSwitchId);
-    $(document).ready(function () {
-      $(".pause").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div>");
-      $(".play").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div> <div class=\"line line_3\"></div>");
-    }); // pause.classList.remove("active");
-    // play.classList.add("active");
-    // ap.play();
+    ap.play();
   } else {
     //change play
-    if (play.classList.contains('active')) {
-      play.classList.remove('active');
-      pause.classList.add('active'); //add active for pause
+    //if play has active
+    if ($('div.pause').hasClass("active")) {
+      //$(".play").attr('play active', 'play');
+      $('.pause').removeClass("active"); //play.classList.add('active');
+
+      $('.play').addClass("active");
+      ap.play();
+    } else if ($('div.play').hasClass("active")) {
+      //pause.classList.remove('active');
+      $('.play').removeClass('active'); //play.classList.remove('active');
+      //pause.classList.add('active');
+
+      $('.pause').addClass('active'); //add active for pause
 
       ap.pause();
-    } else {
-      pause.classList.remove('active');
-      play.classList.add('active');
-      ap.play();
-    }
-  } //remove play line
-  //add pause line
-  // aplayer play function
-  // when i click any song to play
-  //should have condition for turn on play and pause
-  // click to slideUp player see
+    } //if pause is active
 
+  }
 
-  ap.play();
   $("#aplayer").addClass("showPlayer");
 });
 var ap = new APlayer({
@@ -100,27 +97,24 @@ var ap = new APlayer({
     url: "./music/Goddamnit.mp3",
     cover: "./img/08.jpg"
   }]
-});
-var dataSwitchId = $(void 0).attr("data-switch");
-
-if (currentDataSwitch != dataSwitchId) {
-  autoSwitchPlay();
-}
-
-function autoSwitchPlay() {
-  currentDataSwitch = dataSwitchId;
-  $(document).ready(function () {
-    $(".pause").remove();
-    $(".play").remove();
-  });
-  $(document).ready(function () {
-    $(".app" + dataSwitchId).append(' <div class="pause "></div> <div class="play active"></div>');
-  }); //this is static id but i use dynamic
-  //create pause
-
-  ap.list["switch"](dataSwitchId);
-  $(document).ready(function () {
-    $(".pause").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div>");
-    $(".play").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div> <div class=\"line line_3\"></div>");
-  });
-}
+}); // var dataSwitchId = $(this).attr("data-switch");
+// if (currentDataSwitch != dataSwitchId) {
+//   autoSwitchPlay();
+// }
+// function autoSwitchPlay() {
+//   currentDataSwitch = dataSwitchId;
+//   $(document).ready(function () {
+//     $(".pause").remove();
+//     $(".play").remove();
+//   });
+//   $(document).ready(function () {
+//     $(".app" + dataSwitchId).append(' <div class="pause "></div> <div class="play active"></div>');
+//   });
+//   //this is static id but i use dynamic
+//   //create pause
+//   ap.list.switch(dataSwitchId);
+//   $(document).ready(function () {
+//     $(".pause").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div>");
+//     $(".play").append("<div class=\"line line_1\"></div> <div class=\"line line_2\"></div> <div class=\"line line_3\"></div>");
+//   });
+// }
